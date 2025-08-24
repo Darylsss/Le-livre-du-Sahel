@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret pour Soraya - Page Principale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #fff5f5;
+            --secondary-color: #ffeaea;
+            --accent-color: #8b1538;
+            --wine-color: #722f37;
+            --light-wine: #a64d79;
+            --text-color: #4a2c2a;
+            --light-color: #ffffff;
+            --dark-color: #2d1b1b;
+            --gold-accent: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, #f0e6e6 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Animation de fond avec particules */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 75%, rgba(139, 21, 56, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 21, 56, 0.04) 0%, transparent 50%);
+            animation: floatBackground 25s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes floatBackground {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(0.5deg); }
+            66% { transform: translateY(10px) rotate(-0.5deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Bannière élégante */
+        .banner {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 20px 40px rgba(139, 21, 56, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 21, 56, 0.1);
+            animation: bannerAppear 1.2s ease-out;
+        }
+        
+        @keyframes bannerAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                var(--accent-color), 
+                var(--light-wine), 
+                var(--gold-accent), 
+                var(--wine-color)
+            );
+            background-size: 300% 100%;
+            animation: gradientFlow 10s linear infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        
+        .banner h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--wine-color);
+            margin-bottom: 15px;
+            font-size: 36px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(139, 21, 56, 0.2);
+            animation: titlePulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .banner p {
+            font-family: 'Dancing Script', cursive;
+            color: var(--light-wine);
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            animation: subtitleFloat 5s ease-in-out infinite;
+        }
+        
+        @keyframes subtitleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* Navigation des chapitres */
+        .chapters-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 15px 35px rgba(139, 21, 56, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(139, 21, 56, 0.1);
+            animation: navAppear 1.5s ease-out 0.3s both;
+        }
+        
+        @keyframes navAppear {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chapters-nav h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--wine-color);
+            font-size: 28px;
+            font-weight: 700;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .chapters-nav h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold-accent));
+            border-radius: 2px;
+        }
+        
+        .chapters-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .chapter-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid rgba(139, 21, 56, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: chapterFloat 6s ease-in-out infinite;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+        
+        .chapter-item:nth-child(1) { --delay: 0; }
+        .chapter-item:nth-child(2) { --delay: 1; }
+        .chapter-item:nth-child(3) { --delay: 2; }
+        
+        @keyframes chapterFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .chapter-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 21, 56, 0.05), transparent);
+            transition: left 0.6s;
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(139, 21, 56, 0.2),
+                0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .chapter-item:hover::before {
+            left: 100%;
+        }
+        
+        .chapter-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--light-wine);
+            animation: iconSpin 8s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes iconSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .chapter-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--wine-color);
+            font-weight: 700;
+        }
+        
+        .chapter-desc {
+            font-size: 16px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        /* Sections de contenu */
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 15px 35px rgba(139, 21, 56, 0.12),
+                0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(139, 21, 56, 0.1);
+            animation: sectionSlideIn 0.8s ease-out;
+        }
+        
+        @keyframes sectionSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--wine-color);
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 700;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold-accent));
+            border-radius: 2px;
+        }
+        
+        /* Styles pour la galerie */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(139, 21, 56, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 3/4;
+            max-height: 320px;
+            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: galleryFloat 8s ease-in-out infinite;
+            animation-delay: calc(var(--item-delay) * 0.1s);
+        }
+        
+        .gallery-item:nth-child(odd) { --item-delay: 0; }
+        .gallery-item:nth-child(even) { --item-delay: 2; }
+        
+        @keyframes galleryFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(0.2deg); }
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 21, 56, 0.25);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(139, 21, 56, 0.9), transparent);
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .download-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.2);
+            color: var(--wine-color);
+            font-size: 18px;
+        }
+        
+        .gallery-item:hover .download-btn {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .download-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Styles pour l'upload */
+        .upload-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 3px dashed var(--light-wine);
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: uploadPulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes uploadPulse {
+            0%, 100% { border-color: var(--light-wine); }
+            50% { border-color: var(--accent-color); }
+        }
+        
+        .upload-section:hover {
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 21, 56, 0.15);
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--wine-color));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 20px;
+            box-shadow: 0 6px 20px rgba(139, 21, 56, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(139, 21, 56, 0.4);
+        }
+        
+        .upload-btn:hover::before {
+            left: 100%;
+        }
+        
+        #file-input {
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: var(--light-wine);
+            margin-bottom: 15px;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        /* Bouton pour générer un verset */
+        .verse-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--wine-color));
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(139, 21, 56, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .verse-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .verse-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(139, 21, 56, 0.4);
+        }
+        
+        .verse-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Conteneur de verset */
+        .verse-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-style: italic;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            border: 2px solid rgba(139, 21, 56, 0.1);
+            box-shadow: 0 8px 20px rgba(139, 21, 56, 0.1);
+            transition: all 0.4s ease;
+            font-size: 18px;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        .verse-container.active {
+            border-color: var(--light-wine);
+            box-shadow: 0 12px 30px rgba(139, 21, 56, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Modal pour l'image agrandie */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: modalZoom 0.4s ease-out;
+        }
+        
+        @keyframes modalZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(139, 21, 56, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            background: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        .modal-download {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--wine-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(139, 21, 56, 0.4);
+        }
+        
+        .modal-download:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(139, 21, 56, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--light-wine);
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            font-weight: 700;
+            animation: footerGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes footerGlow {
+            0%, 100% { text-shadow: 0 0 5px rgba(139, 21, 56, 0.3); }
+            50% { text-shadow: 0 0 15px rgba(139, 21, 56, 0.6), 0 0 25px rgba(212, 175, 55, 0.3); }
+        }
+        
+        /* Messages d'épilogue */
+        .epilogue-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(139, 21, 56, 0.15);
+            animation: messageAppear 1s ease-out;
+        }
+        
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .epilogue-message p {
+            font-style: italic;
+            text-align: center;
+            font-size: 20px;
+            color: var(--wine-color);
+            font-weight: 600;
+            line-height: 1.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .banner, .chapters-nav, .content-section {
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+            
+            .banner h1 {
+                font-size: 28px;
+            }
+            
+            .banner p {
+                font-size: 22px;
+            }
+            
+            .chapters-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .close-modal {
+                top: 20px;
+                right: 20px;
+                font-size: 35px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .modal-download {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Animation de chargement global */
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            animation: pageLoad 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bannière élégante -->
+        <div class="banner">
+            <h1>Bienvenue Soraya 🦌</h1>
+            <p>Un voyage à travers les pages qui t'es dédiées</p>
+        </div>
+        
+        <!-- Navigation style chapitres -->
+        <nav class="chapters-nav">
+            <h2>Les Chapitres à découvrir</h2>
+            <ul class="chapters-list">
+                <li class="chapter-item" onclick="showSection('portraits-magiques')">
+                    <div class="chapter-icon">🎨</div>
+                    <h3 class="chapter-title">Chapitre 1: Les Portraits</h3>
+                    <p class="chapter-desc">Galerie art</p>
+                </li>
+                <li class="chapter-item" onclick="showSection('mots-du-ciel')">
+                    <div class="chapter-icon">📖</div>
+                    <h3 class="chapter-title">Chapitre 2: Les Mots du Ciel</h3>
+                    <p class="chapter-desc">Bocal digital de versets du Coran</p>
+                </li>
+                <li class="chapter-item" onclick="showSection('epilogue')">
+                    <div class="chapter-icon">💌</div>
+                    <h3 class="chapter-title">Chapitre 3: L'Épilogue</h3>
+                    <p class="chapter-desc">Message personnel</p>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Sections de contenu -->
+        <section id="portraits-magiques" class="content-section">
+            <h2 class="section-title">Chapitre 1: Les Portraits</h2>
+            <p>Cette galerie présente quelques visuels inspirés de la princesse du Sahel.</p>
+            
+            <div class="gallery-container" id="gallery">
+                <!-- Les images seront ajoutées ici dynamiquement -->
+            </div>
+            
+            <div class="upload-section">
+                <div class="upload-icon">📤</div>
+                <h3>Ajouter une image à la galerie</h3>
+                <p>Sélectionne une image depuis ton appareil pour l'ajouter à la galerie</p>
+                <label for="file-input" class="upload-btn">Choisir une image</label>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+        </section>
+        
+        <section id="mots-du-ciel" class="content-section">
+            <h2 class="section-title">Chapitre 2: Les Mots du Ciel</h2>
+            <p>Ici tu trouveras un bocal digital contenant des versets du Coran. Appuie et lis quand tu es heureuse, triste, en colère, anxieuse ou alors tout simplement quand t'en as besoin.</p>
+            <div style="text-align: center; margin: 30px 0;">
+                <button onclick="showRandomVerse()" class="verse-btn">Générer un verset</button>
+            </div>
+            <div id="verse-container" class="verse-container">
+                <p>Clique sur le bouton pour découvrir un verset.</p>
+            </div>
+        </section>
+        
+        <section id="epilogue" class="content-section">
+            <h2 class="section-title">Chapitre 3: L'Épilogue</h2>
+            <p>Un message personnel spécial qui t'es destiné.</p>
+            <div class="epilogue-message">
+                <p>Que la force soit avec toi</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Conçue par le champignon.</p>
+    </footer>
+    
+    <!-- Modal pour afficher les images en grand -->
+    <div class="modal" id="image-modal">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <button class="modal-download" id="modal-download">Télécharger</button>
+    </div>
+
+    <script>
+        // Fonction pour afficher les sections
+        function showSection(sectionId) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Afficher la section sélectionnée avec animation
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+            
+            // Scroll fluide vers la section
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Versets du Coran
+        const verses = [
+            "Et certes, Nous avons honoré les fils d'Adam. (Sourate Al-Isra, 17:70)",
+            "Et ton Seigneur dit: «Invoque-Moi, Je te répondrai». (Sourate Ghafir, 40:60)",
+            "Allah est avec ceux qui patientent. (Sourate Al-Baqarah, 2:153)",
+            "Et Nous avons fait de vous des peuples et des tribus pour que vous vous entreconnaissiez. (Sourate Al-Hujurat, 49:13)",
+            "Et quant à ceux qui croient et font de bonnes œuvres, Il leur donnera leurs récompenses. (Sourate An-Nisa, 4:173)",
+            "Et ne perdez pas courage et ne vous affligez pas, car vous êtes les plus hauts si vous êtes croyants. (Sourate Al-Imran, 3:139)",
+            "Et quiconque place sa confiance en Allah, Il Lui suffit. (Sourate At-Talaq, 65:3)",
+            "Allah n'impose à aucune âme une charge supérieure à sa capacité. (Sourate Al-Baqarah, 2:286)",
+            "Et Allah est le Possesseur de la grâce immense. (Sourate Al-Baqarah, 2:105)",
+            "Et invoque ton Seigneur en toi-même, en humilité et crainte. (Sourate Al-A'raf, 7:55)"
+        ];
+        
+        // Fonction pour afficher un verset aléatoire
+        function showRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            const verseContainer = document.getElementById('verse-container');
+            
+            // Animation de disparition
+            verseContainer.style.opacity = '0';
+            verseContainer.style.transform = 'translateY(-10px)';
+            
+            setTimeout(() => {
+                verseContainer.innerHTML = `<p>"${verses[randomIndex]}"</p>`;
+                verseContainer.classList.add('active');
+                
+                // Animation d'apparition
+                verseContainer.style.opacity = '1';
+                verseContainer.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        // Tableau des images de la galerie
+        const galleryImages = [
+            {
+                src: "img/gaz.jpg",
+                title: "MA GAZELLE"
+            },
+            {
+                src: "img/sor2.jpg",
+                title: "Celebrity"
+            },
+            {
+                src: "img/sor3.jpg",
+                title: "REWARD"
+            },
+            {
+                src: "img/sor4.jpg",
+                title: "L'éveil"
+            },
+            {
+                src: "img/sor5.jpg",
+                title: "Archives"
+            },
+            {
+                src: "img/sor6.png",
+                title: "Echo"
+            },
+            {
+                src: "img/sor7.jpg",
+                title: "If she were a flower"
+            }
+        ];
+        
+        // Références aux éléments DOM
+        const galleryContainer = document.getElementById('gallery');
+        const fileInput = document.getElementById('file-input');
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.getElementById('close-modal');
+        const modalDownload = document.getElementById('modal-download');
+        
+        // Variable pour stocker l'image actuellement sélectionnée
+        let currentImage = null;
+        
+        // Fonction pour afficher les images dans la galerie
+        function renderGallery() {
+            galleryContainer.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.style.setProperty('--item-delay', index);
+                
+                const img = document.createElement('img');
+                img.src = image.src;
+                img.alt = image.title;
+                img.className = 'gallery-image';
+                
+                // Gestion des erreurs de chargement d'image
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+                    this.alt = 'Image non disponible: ' + image.title;
+                };
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-overlay';
+                overlay.innerHTML = `<h3>${image.title}</h3>`;
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.innerHTML = '⤓';
+                downloadBtn.title = 'Télécharger cette image';
+                downloadBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    downloadImage(image.src, image.title);
+                };
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(overlay);
+                galleryItem.appendChild(downloadBtn);
+                
+                galleryItem.onclick = () => openModal(image.src, image.title);
+                
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+        
+        // Fonction pour ouvrir la modal avec l'image agrandie
+        function openModal(src, title) {
+            currentImage = { src, title };
+            modalImage.src = src;
+            modalImage.alt = title;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Fonction pour fermer la modal
+        function closeModalFunc() {
+            modal.classList.remove('open');
+            currentImage = null;
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fonction pour télécharger une image
+        function downloadImage(src, title) {
+            fetch(src)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${title}.jpg`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error('Erreur lors du téléchargement:', error);
+                    alert('Impossible de télécharger cette image.');
+                });
+        }
+        
+        // Fonction pour ajouter une image à la galerie
+        function addImageToGallery(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const newImage = {
+                    src: e.target.result,
+                    title: `Image ${galleryImages.length + 1}`
+                };
+                
+                galleryImages.push(newImage);
+                renderGallery();
+                
+                // Animation de confirmation
+                const uploadSection = document.querySelector('.upload-section');
+                uploadSection.style.background = 'rgba(139, 21, 56, 0.1)';
+                uploadSection.style.borderColor = 'var(--accent-color)';
+                
+                setTimeout(() => {
+                    uploadSection.style.background = '';
+                    uploadSection.style.borderColor = '';
+                    alert('Image ajoutée avec succès à la galerie!');
+                }, 800);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        // Événements
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                addImageToGallery(this.files[0]);
+                this.value = ''; // Réinitialiser l'input
+            }
+        });
+        
+        closeModal.addEventListener('click', closeModalFunc);
+        
+        modalDownload.addEventListener('click', function() {
+            if (currentImage) {
+                downloadImage(currentImage.src, currentImage.title);
+            }
+        });
+        
+        // Fermer la modal en cliquant à l'extérieur de l'image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModalFunc();
+            }
+        });
+        
+        // Fermer la modal avec la touche Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('open')) {
+                closeModalFunc();
+            }
+        });
+        
+        // Initialiser la galerie
+        renderGallery();
+        
+        // Animation d'apparition des éléments au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observer les éléments de la galerie
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
