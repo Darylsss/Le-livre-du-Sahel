@@ -832,6 +832,26 @@
     </div>
 
     <script>
+        // Import Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+// ⚠️ Mets tes vraies infos depuis la console Firebase
+const firebaseConfig = {
+ apiKey: "AIzaSyDcXVAfTFrN6DFiS2qgrOHktHJtf7Cvg0A",
+    authDomain: "galerie-81dec.firebaseapp.com",
+    projectId: "galerie-81dec",
+    storageBucket: "galerie-81dec.firebasestorage.app",
+    messagingSenderId: "666137192279",
+    appId: "1:666137192279:web:a2dd5ef3b1566fe2d38012",
+    measurementId: "G-9Y1L0DD4Y1"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
         // Fonction pour afficher les sections
         function showSection(sectionId) {
             // Cacher toutes les sections
@@ -884,37 +904,42 @@
         }
 
         // Tableau des images de la galerie
-        const galleryImages = [
-            {
-                src: "img/gaz.jpg",
-                title: "MA GAZELLE"
-            },
-            {
-                src: "img/sor2.jpg",
-                title: "Celebrity"
-            },
-            {
-                src: "img/sor3.jpg",
-                title: "REWARD"
-            },
-            {
-                src: "img/sor4.jpg",
-                title: "L'éveil"
-            },
-            {
-                src: "img/sor5.jpg",
-                title: "Archives"
-            },
-            {
-                src: "img/sor6.png",
-                title: "Echo"
-            },
-            {
-                src: "img/sor7.jpg",
-                title: "If she were a flower"
-            }
-        ];
-        
+      // Fonction pour charger les images depuis Firestore
+async function loadGallery() {
+  galleryContainer.innerHTML = '';
+  const querySnapshot = await getDocs(collection(db, "images"));
+  querySnapshot.forEach((doc) => {
+    const image = doc.data();
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
+    
+    const img = document.createElement('img');
+    img.src = image.url;
+    img.alt = image.title || "Image";
+    img.className = 'gallery-image';
+
+    const overlay = document.createElement('div');
+    overlay.className = 'gallery-overlay';
+    overlay.innerHTML = `<h3>${image.title || "Sans titre"}</h3>`;
+
+    const downloadBtn = document.createElement('button');
+    downloadBtn.className = 'download-btn';
+    downloadBtn.innerHTML = '⤓';
+    downloadBtn.onclick = (e) => {
+      e.stopPropagation();
+      downloadImage(image.url, image.title || "image");
+    };
+
+    galleryItem.appendChild(img);
+    galleryItem.appendChild(overlay);
+    galleryItem.appendChild(downloadBtn);
+
+    galleryItem.onclick = () => openModal(image.url, image.title || "Image");
+
+    galleryContainer.appendChild(galleryItem);
+  });
+}
+
         // Références aux éléments DOM
         const galleryContainer = document.getElementById('gallery');
         const fileInput = document.getElementById('file-input');
@@ -927,18 +952,7 @@
         let currentImage = null;
         
         // Fonction pour afficher les images dans la galerie
-        function renderGallery() {
-            galleryContainer.innerHTML = '';
-            
-            galleryImages.forEach((image, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.style.setProperty('--item-delay', index);
-                
-                const img = document.createElement('img');
-                img.src = image.src;
-                img.alt = image.title;
-                img.className = 'gallery-image';
+        
                 
                 // Gestion des erreurs de chargement d'image
                 img.onerror = function() {
@@ -1034,12 +1048,21 @@
         }
         
         // Événements
-        fileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                addImageToGallery(this.files[0]);
-                this.value = ''; // Réinitialiser l'input
-            }
-        });
+       fileInput.addEventListener('change', async function() {
+  if (this.files && this.files[0]) {
+    const file = this.files[0];
+    const storageRef = ref(storage, "images/" + Date.now() + "-" + file.name);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+
+    await addDoc(collection(db, "images"), { url: url, title: `Image ${Date.now()}` });
+
+    this.value = ''; // reset input
+    loadGallery(); // recharger la galerie
+    alert('Image ajoutée avec succès !');
+  }
+});
+
         
         closeModal.addEventListener('click', closeModalFunc);
         
@@ -1064,7 +1087,8 @@
         });
         
         // Initialiser la galerie
-        renderGallery();
+        loadGallery();
+
         
         // Animation d'apparition des éléments au scroll
         const observerOptions = {
