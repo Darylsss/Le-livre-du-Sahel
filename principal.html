@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secret pour Soraya - Page Principale</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+     <!-- Ajoutez ces lignes avant la balise </head> -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     <style>
         :root {
             --primary-color: #fff5f5;
@@ -469,7 +470,6 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
-            z-index: 1;
         }
         
         .upload-btn:hover {
@@ -754,29 +754,6 @@
         .container {
             animation: pageLoad 1s ease-out;
         }
-
-        /* Indicateur de chargement */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            color: var(--light-wine);
-        }
-        
-        .loading-spinner {
-            border: 4px solid rgba(139, 21, 56, 0.1);
-            border-radius: 50%;
-            border-top: 4px solid var(--accent-color);
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -817,11 +794,6 @@
             <div class="gallery-container" id="gallery">
                 <!-- Les images seront ajoutées ici dynamiquement -->
             </div>
-
-            <div class="loading" id="loading">
-                <div class="loading-spinner"></div>
-                <p>Chargement des images...</p>
-            </div>
             
             <div class="upload-section">
                 <div class="upload-icon">📤</div>
@@ -829,7 +801,6 @@
                 <p>Sélectionne une image depuis ton appareil pour l'ajouter à la galerie</p>
                 <label for="file-input" class="upload-btn">Choisir une image</label>
                 <input type="file" id="file-input" accept="image/*">
-                <button id="upload-button" class="upload-btn" style="display:none; margin-top:10px;">Uploader l'image</button>
             </div>
         </section>
         
@@ -837,7 +808,7 @@
             <h2 class="section-title">Chapitre 2: Les Mots du Ciel</h2>
             <p>Ici tu trouveras un bocal digital contenant des versets du Coran. Appuie et lis quand tu es heureuse, triste, en colère, anxieuse ou alors tout simplement quand t'en as besoin.</p>
             <div style="text-align: center; margin: 30px 0;">
-                <button id="verse-button" class="verse-btn">Générer un verset</button>
+                <button id="verse-button" onclick="showRandomVerse()" class="verse-btn">Générer un verset</button>
             </div>
             <div id="verse-container" class="verse-container">
                 <p>Clique sur le bouton pour découvrir un verset.</p>
@@ -919,262 +890,286 @@
             "Et ton Seigneur dit: «Invoque-Moi, Je te répondrai». (Sourate Ghafir, 40:60)",
             "Allah est avec ceux qui patientent. (Sourate Al-Baqarah, 2:153)",
             "Et Nous avons fait de vous des peuples et des tribus pour que vous vous entreconnaissiez. (Sourate Al-Hujurat, 49:13)",
-            "Et ne désespérez pas de la miséricorde d'Allah. (Sourate Az-Zumar, 39:53)",
             "Et quant à ceux qui croient et font de bonnes œuvres, Il leur donnera leurs récompenses. (Sourate An-Nisa, 4:173)",
+            "Et ne perdez pas courage et ne vous affligez pas, car vous êtes les plus hauts si vous êtes croyants. (Sourate Al-Imran, 3:139)",
+            "Et quiconque place sa confiance en Allah, Il Lui suffit. (Sourate At-Talaq, 65:3)",
             "Allah n'impose à aucune âme une charge supérieure à sa capacité. (Sourate Al-Baqarah, 2:286)",
-            "Et quiconque craint Allah, Il lui donnera une issue favorable. (Sourate At-Talaq, 65:2)",
-            "Et cherche à travers ce qu'Allah t'a donné, la Demeure dernière. (Sourate Al-Qasas, 28:77)",
-            "Et Nous facilitons certes la voie à la facilité. (Sourate Al-A'la, 87:8)"
+            "Et Allah est le Possesseur de la grâce immense. (Sourate Al-Baqarah, 2:105)",
+            "Et invoque ton Seigneur en toi-même, en humilité et crainte. (Sourate Al-A'raf, 7:55)",
+            "Et quiconque fait le bien, fût-ce du poids d'un atome, le verra. (Sourate Al-Zalzalah, 99:7)",
+    "Ô vous qui croyez ! Cherchez secours dans l’endurance et la prière. (Sourate Al-Baqarah, 2:153)",
+    "Et ne vous laissez pas emporter par la haine des gens, mais soyez justes. (Sourate Al-Ma'idah, 5:8)",
+    "Et adore ton Seigneur jusqu’à ce que te vienne la certitude. (Sourate Al-Hijr, 15:99)",
+    "Et Nous avons envoyé Nos messagers avec preuves évidentes. (Sourate Al-An'am, 6:48)",
+    "Et Allah aime ceux qui se repentent et qui se purifient. (Sourate Al-Baqarah, 2:222)",
+    "Et la patience est belle. (Sourate Al-Ma'arij, 70:5)",
+    "Et souvenez-vous d’Allah, afin que vous réussissiez. (Sourate Al-Anfal, 8:45)",
+    "Et celui qui craint Allah, Il lui facilite la voie. (Sourate At-Talaq, 65:2)",
+    "Et ton Seigneur est le Pardonneur, le Très-Miséricordieux. (Sourate Al-Kahf, 18:58)"
         ];
         
-        // Variables pour la gestion de l'upload
-        let selectedFile = null;
-        
-        // Initialisation du DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("DOM chargé, initialisation en cours...");
-            
-            // Navigation par clic sur les chapitres
-            document.querySelectorAll('.chapter-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    console.log("Chapitre cliqué:", sectionId);
-                    showSection(sectionId);
-                });
-            });
-            
-            // Gestion de l'upload d'images
-            const fileInput = document.getElementById('file-input');
-            const uploadButton = document.getElementById('upload-button');
-            
-            if (fileInput) {
-                fileInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                        selectedFile = this.files[0];
-                        // Afficher le bouton d'upload
-                        uploadButton.style.display = 'block';
-                        // Aperçu de l'image sélectionnée (optionnel)
-                        alert(`Image sélectionnée: ${selectedFile.name}\nCliquez sur "Uploader l'image" pour l'ajouter.`);
-                    }
-                });
-            } else {
-                console.error("Élément file-input non trouvé");
-            }
-            
-            if (uploadButton) {
-                uploadButton.addEventListener('click', function() {
-                    if (selectedFile) {
-                        addImageToGallery(selectedFile);
-                        // Réinitialiser après l'upload
-                        selectedFile = null;
-                        this.style.display = 'none';
-                        fileInput.value = '';
-                    } else {
-                        alert('Veuillez d\'abord sélectionner une image.');
-                    }
-                });
-            } else {
-                console.error("Élément upload-button non trouvé");
-            }
-            
-            // Gestion des versets
-            const verseButton = document.getElementById('verse-button');
+        // Fonction pour afficher un verset aléatoire
+        function showRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
             const verseContainer = document.getElementById('verse-container');
             
-            if (verseButton && verseContainer) {
-                verseButton.addEventListener('click', function() {
-                    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
-                    verseContainer.innerHTML = `<p>${randomVerse}</p>`;
-                    verseContainer.classList.add('active');
-                });
-            }
+            // Animation de disparition
+            verseContainer.style.opacity = '0';
+            verseContainer.style.transform = 'translateY(-10px)';
             
-            // Gestion de la modal
-            const modal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const closeModal = document.getElementById('close-modal');
-            const modalDownload = document.getElementById('modal-download');
-            
-            if (closeModal) {
-                closeModal.addEventListener('click', function() {
-                    modal.classList.remove('open');
-                });
-            }
-            
-            // Fermer la modal en cliquant à l'extérieur
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.classList.remove('open');
-                }
-            });
-            
-            // Charger les images de la galerie au chargement initial
-            loadGalleryImages();
-        });
+            setTimeout(() => {
+                verseContainer.innerHTML = `<p>"${verses[randomIndex]}"</p>`;
+                verseContainer.classList.add('active');
+                
+                // Animation d'apparition
+                verseContainer.style.opacity = '1';
+                verseContainer.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        // Tableau des images de la galerie (maintenant chargé depuis Firebase)
+        let galleryImages = [];
         
-        // Fonction pour charger les images depuis Firebase
+        // Références aux éléments DOM
+        const galleryContainer = document.getElementById('gallery');
+        const fileInput = document.getElementById('file-input');
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.getElementById('close-modal');
+        const modalDownload = document.getElementById('modal-download');
+        
+        // Variable pour stocker l'image actuellement sélectionnée
+        let currentImage = null;
+        
+        // Charger les images depuis Firebase au démarrage
         function loadGalleryImages() {
-            console.log("Chargement des images de la galerie...");
-            const gallery = document.getElementById('gallery');
-            const loading = document.getElementById('loading');
-            
-            if (!gallery) {
-                console.error("Élément gallery non trouvé");
-                return;
-            }
-            
-            // Afficher l'indicateur de chargement
-            if (loading) loading.style.display = 'block';
-            
-            // Vider la galerie
-            gallery.innerHTML = '';
-            
-            // Récupérer les images depuis Firestore
             imagesCollection.get().then((querySnapshot) => {
-                if (querySnapshot.empty) {
-                    gallery.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding:40px;">Aucune image dans la galerie pour le moment.</p>';
-                    if (loading) loading.style.display = 'none';
-                    return;
-                }
-                
+                galleryImages = [];
                 querySnapshot.forEach((doc) => {
-                    const imageData = doc.data();
-                    console.log("Image chargée:", imageData);
-                    
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    
-                    const img = document.createElement('img');
-                    img.src = imageData.url;
-                    img.alt = imageData.name || 'Image de la galerie';
-                    img.className = 'gallery-image';
-                    
-                    const overlay = document.createElement('div');
-                    overlay.className = 'gallery-overlay';
-                    overlay.innerHTML = `<h4>${imageData.name || 'Sans titre'}</h4>`;
-                    
-                    const downloadBtn = document.createElement('button');
-                    downloadBtn.className = 'download-btn';
-                    downloadBtn.innerHTML = '⬇️';
-                    downloadBtn.title = 'Télécharger';
-                    downloadBtn.onclick = function(e) {
-                        e.stopPropagation();
-                        downloadImage(imageData.url, imageData.name || 'image');
-                    };
-                    
-                    galleryItem.appendChild(img);
-                    galleryItem.appendChild(overlay);
-                    galleryItem.appendChild(downloadBtn);
-                    
-                    // Ouvrir l'image en grand au clic
-                    galleryItem.addEventListener('click', function() {
-                        openModal(imageData.url);
-                    });
-                    
-                    gallery.appendChild(galleryItem);
+                    galleryImages.push(doc.data());
                 });
                 
-                if (loading) loading.style.display = 'none';
+                // Si aucune image dans Firebase, charger les images par défaut
+                if (galleryImages.length === 0) {
+                    loadDefaultImages();
+                } else {
+                    renderGallery();
+                }
             }).catch((error) => {
-                console.error("Erreur lors du chargement des images:", error);
-                gallery.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding:40px; color:var(--accent-color);">Erreur lors du chargement des images.</p>';
-                if (loading) loading.style.display = 'none';
+                console.error("Erreur lors du chargement des images: ", error);
+                // Charger les images par défaut en cas d'erreur
+                loadDefaultImages();
             });
         }
         
-        // Fonction pour ajouter une image à la galerie
-        function addImageToGallery(file) {
-            console.log("Tentative d'ajout d'image:", file.name);
+        // Charger les images par défaut
+        function loadDefaultImages() {
+            galleryImages = [
+                { src: "img/gaz.jpg", title: "MA GAZELLE" },
+                { src: "img/sor2.jpg", title: "Celebrity" },
+                { src: "img/sor3.jpg", title: "REWARD" },
+                { src: "img/sor4.jpg", title: "L'éveil" },
+                { src: "img/sor5.jpg", title: "Archives" },
+                { src: "img/sor6.png", title: "Echo" },
+                { src: "img/sor7.jpg", title: "If she were a flower" }
+            ];
+            renderGallery();
+        }
+        
+        // Fonction pour afficher les images dans la galerie
+        function renderGallery() {
+            galleryContainer.innerHTML = '';
             
-            // Vérifier que c'est bien une image
-            if (!file.type.match('image.*')) {
-                alert('Veuillez sélectionner une image valide.');
+            if (galleryImages.length === 0) {
+                galleryContainer.innerHTML = '<p style="text-align: center; padding: 40px; color: var(--light-wine);">Aucune image dans la galerie pour le moment.</p>';
                 return;
             }
             
-            // Afficher un indicateur de chargement
-            const loading = document.getElementById('loading');
-            if (loading) loading.style.display = 'block';
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.style.setProperty('--item-delay', index);
+                
+                const img = document.createElement('img');
+                img.src = image.src;
+                img.alt = image.title;
+                img.className = 'gallery-image';
+                
+                // Gestion des erreurs de chargement d'image
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSI gaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+                    this.alt = 'Image non disponible: ' + image.title;
+                };
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-overlay';
+                overlay.innerHTML = `<h3>${image.title}</h3>`;
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.innerHTML = '⤓';
+                downloadBtn.title = 'Télécharger cette image';
+                downloadBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    downloadImage(image.src, image.title);
+                };
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(overlay);
+                galleryItem.appendChild(downloadBtn);
+                
+                galleryItem.onclick = () => openModal(image.src, image.title);
+                
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+        
+        // Fonction pour ouvrir la modal avec l'image agrandie
+        function openModal(src, title) {
+            currentImage = { src, title };
+            modalImage.src = src;
+            modalImage.alt = title;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Fonction pour fermer la modal
+        function closeModalFunc() {
+            modal.classList.remove('open');
+            currentImage = null;
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fonction pour télécharger une image
+        function downloadImage(src, title) {
+            fetch(src)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${title}.jpg`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error('Erreur lors du téléchargement:', error);
+                    alert('Impossible de télécharger cette image.');
+                });
+        }
+        
+        // Fonction pour ajouter une image à la galerie et à Firebase
+        function addImageToGallery(file) {
+            // Générer un nom de fichier unique
+            const fileName = `gallery_${Date.now()}_${file.name}`;
+            const storageRef = storage.ref().child('gallery/' + fileName);
             
-            // Créer une référence pour le fichier dans Firebase Storage
-            const storageRef = storage.ref();
-            const imageRef = storageRef.child('gallery/' + Date.now() + '_' + file.name);
-            
-            // Uploader le fichier
-            const uploadTask = imageRef.put(file);
+            // Uploader le fichier vers Firebase Storage
+            const uploadTask = storageRef.put(file);
             
             uploadTask.on('state_changed', 
                 (snapshot) => {
-                    // Progression de l'upload (optionnel)
+                    // Suivi de la progression (optionnel)
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log('Upload progress: ' + progress + '%');
                 }, 
                 (error) => {
                     // Gestion des erreurs
                     console.error('Erreur lors de l\'upload:', error);
-                    alert('Erreur lors de l\'upload de l\'image: ' + error.message);
-                    if (loading) loading.style.display = 'none';
+                    alert('Erreur lors de l\'ajout de l\'image.');
                 }, 
                 () => {
                     // Upload réussi, obtenir l'URL de téléchargement
                     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        console.log('Image disponible à l\'URL: ', downloadURL);
+                        const newImage = {
+                            src: downloadURL,
+                            title: `Image ${galleryImages.length + 1}`,
+                            fileName: fileName,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        };
                         
-                        // Ajouter les métadonnées de l'image à Firestore
-                        imagesCollection.add({
-                            name: file.name,
-                            url: downloadURL,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        }).then(() => {
-                            console.log('Image ajoutée avec succès à la galerie!');
-                            // Recharger les images de la galerie
-                            loadGalleryImages();
-                        }).catch((error) => {
-                            console.error('Erreur lors de l\'ajout des métadonnées:', error);
-                            alert('Erreur lors de l\'ajout des métadonnées: ' + error.message);
-                            if (loading) loading.style.display = 'none';
-                        });
+                        // Ajouter l'image à Firestore
+                        imagesCollection.add(newImage)
+                            .then((docRef) => {
+                                console.log("Image ajoutée avec ID: ", docRef.id);
+                                newImage.id = docRef.id;
+                                
+                                // Ajouter à la galerie locale
+                                galleryImages.push(newImage);
+                                renderGallery();
+                                
+                                // Animation de confirmation
+                                const uploadSection = document.querySelector('.upload-section');
+                                uploadSection.style.background = 'rgba(139, 21, 56, 0.1)';
+                                uploadSection.style.borderColor = 'var(--accent-color)';
+                                
+                                setTimeout(() => {
+                                    uploadSection.style.background = '';
+                                    uploadSection.style.borderColor = '';
+                                    alert('Image ajoutée avec succès à la galerie!');
+                                }, 800);
+                            })
+                            .catch((error) => {
+                                console.error("Erreur lors de l'ajout à Firestore: ", error);
+                                alert('Erreur lors de l\'ajout de l\'image.');
+                            });
                     });
                 }
             );
         }
         
-        // Fonction pour ouvrir une image en grand
-        function openModal(imageUrl) {
-            const modal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const modalDownload = document.getElementById('modal-download');
+        // Initialisation après le chargement du DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM chargé, initialisation des événements...");
             
-            if (modal && modalImage) {
-                modalImage.src = imageUrl;
-                modal.classList.add('open');
-                
-                // Configurer le bouton de téléchargement
-                if (modalDownload) {
-                    modalDownload.onclick = function() {
-                        downloadImage(imageUrl, 'image-agrandie');
-                    };
+            // Événements pour les chapitres
+            document.querySelectorAll('.chapter-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Événement pour le bouton de verset
+            document.getElementById('verse-button').addEventListener('click', showRandomVerse);
+            
+            // Événements pour la galerie
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    addImageToGallery(this.files[0]);
+                    this.value = ''; // Réinitialiser l'input
                 }
-            }
-        }
-        
-        // Fonction pour télécharger une image
-        function downloadImage(url, filename) {
-            fetch(url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = blobUrl;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(blobUrl);
-                    document.body.removeChild(a);
-                })
-                .catch(error => console.error('Erreur lors du téléchargement:', error));
-        }
+            });
+            
+            closeModal.addEventListener('click', closeModalFunc);
+            
+            modalDownload.addEventListener('click', function() {
+                if (currentImage) {
+                    downloadImage(currentImage.src, currentImage.title);
+                }
+            });
+            
+            // Fermer la modal en cliquant à l'extérieur de l'image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+            
+            // Fermer la modal avec la touche Échap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModalFunc();
+                }
+            });
+            
+            // Charger la galerie au démarrage
+            loadGalleryImages();
+            
+            console.log("Initialisation terminée");
+        });
     </script>
 </body>
 </html>
